@@ -198,7 +198,11 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
         }
         
         weak var weakSelf = self
-        self.collectionView.performBatchUpdates({ () -> Void in }, completion: { (finished) -> Void in
+        self.collectionView.performBatchUpdates({ () -> Void in
+            if let _self = weakSelf {
+                _self.collectionView.reloadData()
+            }
+            }, completion: { (finished) -> Void in
             if let _self = weakSelf {
                 _self.collectionView.scrollToItemAtIndexPath(
                     NSIndexPath(forItem: selectedIndex, inSection: 0),

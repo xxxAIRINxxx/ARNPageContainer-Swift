@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             }
         }
         
-        self.pageContainer.setSelectedIndex(2, animated: false)
+        self.pageContainer.setSelectedIndex(2, animated: true)
         self.pageContainer.topBarHeight = 60.0
     }
 }
