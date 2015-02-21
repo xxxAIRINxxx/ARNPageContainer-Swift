@@ -12,36 +12,24 @@ public class ARNPageContainerTabView: UIView {
     
     public var selectTitleHandler : ((selectedIndex: Int) ->())?
     
-    public var titleColor : UIColor {
-        get {
-            return self.currentTitleColor
-        }
-        set {
-            self.currentTitleColor = newValue
+    public var titleColor : UIColor = UIColor.lightGrayColor() {
+        didSet {
             self.resetButtonTitleColor()
         }
     }
     
-    public var highlightedTitleColor : UIColor {
-        get {
-            return self.currentHlightedTitleColor
-        }
-        set {
-            self.currentHlightedTitleColor = newValue
+    public var highlightedTitleColor : UIColor = UIColor.whiteColor() {
+        didSet {
             self.resetButtonTitleColor()
         }
     }
     
-    public var font : UIFont {
-        get {
-            return self.currentFont
-        }
-        set {
-            self.currentFont = newValue
+    public var font : UIFont = UIFont.boldSystemFontOfSize(17.0) {
+        didSet {
             for index in 0..<self.buttons.count {
                 var button = self.buttons[index]
                 if let _titleLabel = button.titleLabel {
-                    _titleLabel.font = newValue
+                    _titleLabel.font = self.font
                 }
             }
         }
@@ -80,32 +68,20 @@ public class ARNPageContainerTabView: UIView {
         }
     }
     
-    public var selectedIndex : Int {
-        get {
-            return self.currentIndex
-        }
-        set {
-            self.currentIndex = newValue
+    public var selectedIndex : Int = 0 {
+        didSet {
             self.layoutItemViews()
         }
     }
     
-    public var itemMargin : CGFloat {
-        get {
-            return self.currentItemMargin
-        }
-        set {
-            self.currentItemMargin = newValue
-            self.layoutItemViews()
+    public var itemMargin : CGFloat = 30.0 {
+        didSet {
+           self.layoutItemViews()
         }
     }
     
-    public var minItemWidth : CGFloat {
-        get {
-            return self.currentMinItemWidth
-        }
-        set {
-            self.currentMinItemWidth = newValue
+    public var minItemWidth : CGFloat = 100.0 {
+        didSet {
             self.layoutItemViews()
         }
     }
@@ -127,12 +103,6 @@ public class ARNPageContainerTabView: UIView {
     }()
     
     var buttons : [UIButton] = []
-    var currentIndex : Int = 0
-    var currentItemMargin : CGFloat = 30.0
-    var currentMinItemWidth : CGFloat = 100.0
-    var currentTitleColor : UIColor = UIColor.lightGrayColor()
-    var currentHlightedTitleColor : UIColor = UIColor.whiteColor()
-    var currentFont : UIFont =  UIFont.boldSystemFontOfSize(17.0)
     
     public override init(frame: CGRect) {
         
@@ -155,9 +125,9 @@ public class ARNPageContainerTabView: UIView {
     
     func itemButton() -> UIButton {
         
-        var button = UIButton(frame: CGRectMake(0.0, 0.0, self.currentMinItemWidth, self.frame.height))
+        var button = UIButton(frame: CGRectMake(0.0, 0.0, self.minItemWidth, self.frame.height))
         button.titleLabel?.font = self.font
-        button.setTitleColor(self.currentTitleColor, forState: .Normal)
+        button.setTitleColor(self.titleColor, forState: .Normal)
         button.addTarget(self, action: Selector("buttonTapped:"), forControlEvents: .TouchUpInside)
         self.scrollView.addSubview(button)
         
@@ -168,9 +138,9 @@ public class ARNPageContainerTabView: UIView {
         
         for index in 0..<self.buttons.count {
             var button = self.buttons[index]
-            button.setTitleColor(self.currentTitleColor, forState: .Normal)
-            button.setTitleColor(self.currentHlightedTitleColor, forState: .Highlighted)
-            button.setTitleColor(self.currentHlightedTitleColor, forState: .Selected)
+            button.setTitleColor(self.titleColor, forState: .Normal)
+            button.setTitleColor(self.highlightedTitleColor, forState: .Highlighted)
+            button.setTitleColor(self.highlightedTitleColor, forState: .Selected)
         }
     }
     
@@ -213,7 +183,7 @@ public class ARNPageContainerTabView: UIView {
     
     func layoutItemViews() {
         
-        var x = self.currentItemMargin
+        var x = self.itemMargin
         
         for index in 0..<self.buttons.count {
             var button = self.buttons[index]
@@ -223,7 +193,7 @@ public class ARNPageContainerTabView: UIView {
                 width = self.minItemWidth
             }
             button.frame = CGRectMake(x, 0.0, width, self.frame.size.height)
-            x += width + self.currentItemMargin
+            x += width + self.itemMargin
         }
         
         self.scrollView.contentSize = CGSizeMake(x, self.scrollView.frame.height)

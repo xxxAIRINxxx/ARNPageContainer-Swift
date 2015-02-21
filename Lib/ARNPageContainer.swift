@@ -16,6 +16,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     public var changeIndexHandler : ((selectIndexController: UIViewController, selectedIndex: Int) ->())?
     public var updateHeaderTitleHandler : ((headerTitles: [String]?) ->())?
     
+    var currentIndex : Int = 0
     public var selectedIndex : Int {
         get {
             return currentIndex
@@ -27,10 +28,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public var topBarHeight : CGFloat {
         get {
-            if let _barLayerViewHeightConstraint = self.barLayerViewHeightConstraint {
-                return _barLayerViewHeightConstraint.constant
-            }
-            return 0.0
+            return self.barLayerViewHeightConstraint?.constant ?? 0
         }
         set {
             if self.barLayerViewHeightConstraint != nil {
@@ -41,10 +39,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public var topMargin : CGFloat {
         get {
-            if let _topConstraint = self.topConstraint {
-                return _topConstraint.constant
-            }
-            return 0.0
+            return self.topConstraint?.constant ?? 0.0
         }
         set {
             if self.topConstraint != nil {
@@ -55,10 +50,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public var bottomMargin : CGFloat {
         get {
-            if let _bottomConstraint = self.bottomConstraint {
-                return -_bottomConstraint.constant
-            }
-            return 0.0
+            return self.bottomConstraint?.constant ?? 0.0
         }
         set {
             if self.bottomConstraint != nil {
@@ -96,7 +88,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
         return view
     }()
     
-    var currentIndex : Int = 0
     var viewControllers : [[String : UIViewController]] = []
     
     var topConstraint : NSLayoutConstraint?
@@ -228,7 +219,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
                 _self.collectionView.collectionViewLayout.invalidateLayout()
             }
         })
-        
         self.currentIndex = selectedIndex
     }
     
@@ -272,11 +262,11 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
         
-        let oldX = CGFloat(self.currentIndex) * self.collectionView.frame.width
+        let oldX = CGFloat(self.selectedIndex) * self.collectionView.frame.width
         
         if oldX != self.collectionView.contentOffset.x && self.shouldObserveContentOffset {
             if let _changeOffsetHandler = self.changeOffsetHandler {
-                _changeOffsetHandler(collectionView:collectionView, selectedIndex: self.currentIndex)
+                _changeOffsetHandler(collectionView:collectionView, selectedIndex: self.selectedIndex)
             }
         }
     }
@@ -318,7 +308,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
-        self.currentIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        self.selectedIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         scrollView.userInteractionEnabled = true
     }
     
