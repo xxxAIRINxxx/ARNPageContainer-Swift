@@ -101,10 +101,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
         fatalError("init(coder:) has not been implemented")
     }
     
-    override public init() {
-        super.init()
-    }
-    
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -282,7 +278,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
         
         let dict = self.viewControllers[indexPath.row]
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(dict.keys.first!, forIndexPath: indexPath) as ARNPageContainerViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(dict.keys.first!, forIndexPath: indexPath) as! ARNPageContainerViewCell
         
         if cell.contentView.subviews.count == 0 {
             let controller = dict.values.first!
