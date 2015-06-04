@@ -60,7 +60,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public lazy var collectionView : UICollectionView = {
-        
         var layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsetsZero
         layout.minimumInteritemSpacing = 0
@@ -80,7 +79,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }()
     
     public lazy var topBarLayerView : UIView = {
-        
         var view = UIView(frame: CGRectZero)
         view.backgroundColor = UIColor.blackColor()
         self.view.addSubview(view)
@@ -111,7 +109,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -123,7 +120,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     func setupConstraint() {
-        
         self.view.arn_addPin(self.topBarLayerView, attribute: .Top, toView: self.view, constant: 0.0)
         self.barLayerViewHeightConstraint = view.arn_addHeightConstraint(self.topBarLayerView, constant: self.topBarLayerViewDefaultHeight)
         self.view.arn_addPin(self.topBarLayerView, attribute: .Left, toView: self.view, constant: 0.0)
@@ -136,7 +132,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func setPasentVC(parentVC: UIViewController) {
-        
         self.willMoveToParentViewController(self)
         parentVC.view.addSubview(self.view)
         
@@ -149,7 +144,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func setTopBarView(view: UIView) {
-        
         for subview in self.topBarLayerView.subviews {
             subview.removeFromSuperview()
         }
@@ -159,7 +153,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func addViewController(controller: UIViewController) {
-        
         let uuid = NSUUID().UUIDString
         
         self.viewControllers.append([uuid : controller])
@@ -172,14 +165,12 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func addViewControllers(viewControllers: [UIViewController]) {
-        
         for controller in viewControllers {
             self.addViewController(controller)
         }
     }
     
     public func setSelectedIndex(selectedIndex: Int, animated: Bool) {
-        
         if selectedIndex >= self.viewControllers.count {
             return
         }
@@ -200,10 +191,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
                 
                 if animated == false {
                     _self.collectionView.userInteractionEnabled = true
-                    
-                    if let _changeOffsetHandler = _self.changeOffsetHandler {
-                        _changeOffsetHandler(collectionView: _self.collectionView, selectedIndex: selectedIndex)
-                    }
+                    _self.changeOffsetHandler?(collectionView: _self.collectionView, selectedIndex: selectedIndex)
                 }
                 
                 if let _changeIndexHandler = _self.changeIndexHandler {
@@ -219,7 +207,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func headerTitles() -> [String] {
-        
         var headerTitles = [String]()
         
         for dict in viewControllers {
@@ -233,23 +220,18 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func updateHeaderTitle() {
-        
-        if let _updateHeaderTitleHandler = self.updateHeaderTitleHandler {
-            _updateHeaderTitleHandler(headerTitles: self.headerTitles())
-        }
+        self.updateHeaderTitleHandler?(headerTitles: self.headerTitles())
     }
     
     // MARK: KVO
     
     func startObservingContentOffsetForScrollView(scrollView: UIScrollView) {
-        
         self.stopObservingContentOffset()
         scrollView.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.New, context: nil)
         self.observingScrollView = scrollView
     }
     
     func stopObservingContentOffset() {
-        
         if let _observingScrollView = self.observingScrollView {
             _observingScrollView.removeObserver(self, forKeyPath: "contentOffset")
             self.observingScrollView = nil
@@ -257,7 +239,6 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        
         let oldX = CGFloat(self.selectedIndex) * self.collectionView.frame.width
         
         if oldX != self.collectionView.contentOffset.x && self.shouldObserveContentOffset {
@@ -270,12 +251,10 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     // MARK: UICollectionView DataSource
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.viewControllers.count
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell  {
-        
         let dict = self.viewControllers[indexPath.row]
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(dict.keys.first!, forIndexPath: indexPath) as! ARNPageContainerViewCell
@@ -298,25 +277,21 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     // MARK: UIScrollView Delegate
     
     public func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         scrollView.userInteractionEnabled = false
     }
     
     public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        
         self.selectedIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         scrollView.userInteractionEnabled = true
     }
     
     public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
         if decelerate == false {
             scrollView.userInteractionEnabled = true
         }
     }
     
     public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        
         scrollView.userInteractionEnabled = true
     }
 }
@@ -326,7 +301,6 @@ public class ARNPageContainerViewCell : UICollectionViewCell {
     var dummyContentView = UIView()
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         
         self.addSubview(self.dummyContentView)

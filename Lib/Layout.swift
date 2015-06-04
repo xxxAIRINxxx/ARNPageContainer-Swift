@@ -11,7 +11,6 @@ import UIKit
 public extension UIView {
     
     public func checkTranslatesAutoresizing(withView: UIView?, toView: UIView?) {
-        
         if self.translatesAutoresizingMaskIntoConstraints() == true {
             self.setTranslatesAutoresizingMaskIntoConstraints(false)
         }
@@ -30,13 +29,11 @@ public extension UIView {
     }
     
     public func arn_addPin(withView:UIView, attribute:NSLayoutAttribute, toView:UIView?, constant:CGFloat) -> NSLayoutConstraint {
-        
         checkTranslatesAutoresizing(withView, toView: toView)
         return arn_addPinConstraint(self, withItem: withView, toItem: toView, attribute: attribute, constant: 0.0)
     }
     
     public func arn_addPin(withView:UIView, isWithViewTop:Bool, toView:UIView?, isToViewTop:Bool, constant:CGFloat) -> NSLayoutConstraint {
-        
         checkTranslatesAutoresizing(withView, toView: toView)
         return arn_addConstraint(
             self,
@@ -50,7 +47,6 @@ public extension UIView {
     }
     
     public func arn_allPin(subView: UIView) {
-        
         checkTranslatesAutoresizing(subView, toView: nil)
         arn_addPinConstraint(self, withItem: subView, toItem: self, attribute: .Top, constant: 0.0)
         arn_addPinConstraint(self, withItem: subView, toItem: self, attribute: .Bottom, constant: 0.0)
@@ -61,7 +57,6 @@ public extension UIView {
     // MARK: NSLayoutConstraint
     
     public func arn_addPinConstraint(parentView: UIView, withItem:UIView, toItem:UIView?, attribute:NSLayoutAttribute, constant:CGFloat) -> NSLayoutConstraint {
-        
         return arn_addConstraint(
             parentView,
             relation: .Equal,
@@ -74,7 +69,6 @@ public extension UIView {
     }
     
     public func arn_addWidthConstraint(view: UIView, constant:CGFloat) -> NSLayoutConstraint {
-        
         return arn_addConstraint(
             view,
             relation: .Equal,
@@ -87,7 +81,6 @@ public extension UIView {
     }
     
     public func arn_addHeightConstraint(view: UIView, constant:CGFloat) -> NSLayoutConstraint {
-        
         return arn_addConstraint(
             view,
             relation: .Equal,
@@ -100,7 +93,6 @@ public extension UIView {
     }
     
     public func arn_addConstraint(addView: UIView, relation: NSLayoutRelation, withItem:UIView, withAttribute:NSLayoutAttribute, toItem:UIView?, toAttribute:NSLayoutAttribute, constant:CGFloat) -> NSLayoutConstraint {
-        
         var constraint = NSLayoutConstraint(
             item: withItem,
             attribute: withAttribute,

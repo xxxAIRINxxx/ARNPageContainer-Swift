@@ -87,7 +87,6 @@ public class ARNPageContainerTabView: UIView {
     }
 
     public lazy var scrollView : UIScrollView = {
-        
         var scrollView = UIScrollView(frame: self.bounds)
         scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         scrollView.scrollEnabled = false
@@ -96,7 +95,6 @@ public class ARNPageContainerTabView: UIView {
     }()
     
     lazy var backGroundImageiew : UIImageView = {
-        
         var backGroundImageiew = UIImageView(frame: self.bounds)
         backGroundImageiew.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         return backGroundImageiew
@@ -105,7 +103,6 @@ public class ARNPageContainerTabView: UIView {
     var buttons : [UIButton] = []
     
     public override init(frame: CGRect) {
-        
         super.init(frame: frame)
         self.addSubview(self.backGroundImageiew)
         self.addSubview(self.scrollView)
@@ -116,7 +113,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func cleanup() {
-        
         for button in self.scrollView.subviews {
             button.removeFromSuperview()
         }
@@ -124,7 +120,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func itemButton() -> UIButton {
-        
         var button = UIButton(frame: CGRectMake(0.0, 0.0, self.minItemWidth, self.frame.height))
         button.titleLabel?.font = self.font
         button.setTitleColor(self.titleColor, forState: .Normal)
@@ -135,7 +130,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func resetButtonTitleColor() {
-        
         for index in 0..<self.buttons.count {
             var button = self.buttons[index]
             button.setTitleColor(self.titleColor, forState: .Normal)
@@ -145,16 +139,11 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func buttonTapped(sender : UIButton) {
-        
         self.resetButtonTitleColor()
-
-        if let _selectTitleHandler = self.selectTitleHandler {
-            _selectTitleHandler(selectedIndex: sender.tag)
-        }
+        self.selectTitleHandler?(selectedIndex: sender.tag)
     }
     
     func centerForSelectedItemAtIndex(index : Int) -> (CGPoint) {
-        
         if self.buttons.count <= index {
             return CGPointZero
         }
@@ -166,7 +155,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func contentOffsetForSelectedItemAtIndex(index : Int) -> (CGPoint) {
-        
         if self.buttons.count <= index || self.buttons.count == 1 {
             return CGPointZero
         }
@@ -176,13 +164,11 @@ public class ARNPageContainerTabView: UIView {
     }
     
     override public func layoutSubviews() {
-        
         super.layoutSubviews()
         self.layoutItemViews()
     }
     
     func layoutItemViews() {
-        
         var x = self.itemMargin
         
         for index in 0..<self.buttons.count {
@@ -208,7 +194,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     public func changeParentScrollView(parentScrollView: UIScrollView, selectedIndex: Int, totalVCCount: Int) {
-        
         struct RGBA {
             var red : CGFloat = 0.0
             var green : CGFloat = 0.0
@@ -266,7 +251,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func getColor(inout red : CGFloat, inout green : CGFloat, inout blue : CGFloat, inout alpha : CGFloat, fromColor : UIColor) {
-        
         let components = CGColorGetComponents(fromColor.CGColor)
         let colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(fromColor.CGColor))
         
