@@ -30,7 +30,7 @@ public extension UIView {
     
     public func arn_addPin(withView:UIView, attribute:NSLayoutAttribute, toView:UIView?, constant:CGFloat) -> NSLayoutConstraint {
         checkTranslatesAutoresizing(withView, toView: toView)
-        return arn_addPinConstraint(self, withItem: withView, toItem: toView, attribute: attribute, constant: 0.0)
+        return arn_addPinConstraint(self, withItem: withView, toItem: toView, attribute: attribute, constant: constant)
     }
     
     public func arn_addPin(withView:UIView, isWithViewTop:Bool, toView:UIView?, isToViewTop:Bool, constant:CGFloat) -> NSLayoutConstraint {
