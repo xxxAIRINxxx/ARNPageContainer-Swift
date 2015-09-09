@@ -194,13 +194,6 @@ public class ARNPageContainerTabView: UIView {
     }
     
     public func changeParentScrollView(parentScrollView: UIScrollView, selectedIndex: Int, totalVCCount: Int) {
-        struct RGBA {
-            var red : CGFloat = 0.0
-            var green : CGFloat = 0.0
-            var blue : CGFloat = 0.0
-            var alpha  : CGFloat = 0.0
-        }
-        
         self.selectedIndex = selectedIndex
         
         let oldX = CGFloat(selectedIndex) * parentScrollView.frame.size.width

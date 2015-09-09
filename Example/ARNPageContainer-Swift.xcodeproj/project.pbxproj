@@ -17,6 +17,7 @@
 		7A1FA6B01A6E145B00374C69 /* ARNPageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */; };
 		7A1FA6B21A6E153200374C69 /* ARNPageContainerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */; };
 		7A7C2E0E1A8B7BE6006D1842 /* image.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7A7C2E0D1A8B7BE6006D1842 /* image.JPG */; };
+		910836A01BA00C7700F293BB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9108369F1BA00C7700F293BB /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARNPageContainer.swift; path = ../../Lib/ARNPageContainer.swift; sourceTree = "<group>"; };
 		7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARNPageContainerTabView.swift; path = ../../Lib/ARNPageContainerTabView.swift; sourceTree = "<group>"; };
 		7A7C2E0D1A8B7BE6006D1842 /* image.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.JPG; sourceTree = "<group>"; };
+		9108369F1BA00C7700F293BB /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */,
 				7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */,
 				56C69C451A77C8D700982ECE /* Layout.swift */,
+				9108369F1BA00C7700F293BB /* UIColor+Extension.swift */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				7A1FA6911A6E13CF00374C69 /* ViewController.swift in Sources */,
 				7A1FA68F1A6E13CF00374C69 /* AppDelegate.swift in Sources */,
 				7A1FA6B01A6E145B00374C69 /* ARNPageContainer.swift in Sources */,
+				910836A01BA00C7700F293BB /* UIColor+Extension.swift in Sources */,
 				56C69C461A77C8D700982ECE /* Layout.swift in Sources */,
 				7A1FA6B21A6E153200374C69 /* ARNPageContainerTabView.swift in Sources */,
 			);
