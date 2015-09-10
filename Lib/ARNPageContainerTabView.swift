@@ -3,7 +3,7 @@
 //  ARNPageContainer-Swift
 //
 //  Created by xxxAIRINxxx on 2015/01/20.
-//  Copyright (c) 2015 Airin. All rights reserved.
+//  Copyright (c) 2015 xxxAIRINxxx. All rights reserved.
 //
 
 import UIKit
@@ -203,10 +203,8 @@ public class ARNPageContainerTabView: UIView {
         if targetIndex >= 0 && targetIndex < totalVCCount {
             let ratio = (parentScrollView.contentOffset.x - oldX) / parentScrollView.frame.size.width
             
-            var normal = RGBA()
-            var highlighted = RGBA()
-            self.getColor(&normal.red, green: &normal.green, blue: &normal.blue, alpha: &normal.alpha, fromColor: self.titleColor)
-            self.getColor(&highlighted.red, green: &highlighted.green, blue: &highlighted.blue, alpha: &highlighted.alpha, fromColor: self.highlightedTitleColor)
+            let normal = self.titleColor.getRGBAStruct()
+            let highlighted = self.highlightedTitleColor.getRGBAStruct()
             
             let absRatio = fabs(ratio)
             let prevColor = UIColor(
@@ -240,28 +238,6 @@ public class ARNPageContainerTabView: UIView {
                     0.0
                 )
             }
-        }
-    }
-    
-    func getColor(inout red : CGFloat, inout green : CGFloat, inout blue : CGFloat, inout alpha : CGFloat, fromColor : UIColor) {
-        let components = CGColorGetComponents(fromColor.CGColor)
-        let colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(fromColor.CGColor))
-        
-        if colorSpaceModel.value == kCGColorSpaceModelRGB.value && CGColorGetNumberOfComponents(fromColor.CGColor) == 4 {
-            red = components[0]
-            green = components[1]
-            blue = components[2]
-            alpha = components[3]
-        } else if colorSpaceModel.value == kCGColorSpaceModelMonochrome.value && CGColorGetNumberOfComponents(fromColor.CGColor) == 2 {
-            red = components[0]
-            green = components[0]
-            blue = components[0]
-            alpha = components[1]
-        } else {
-            red = components[0]
-            green = components[0]
-            blue = components[0]
-            alpha = components[0]
         }
     }
 }
