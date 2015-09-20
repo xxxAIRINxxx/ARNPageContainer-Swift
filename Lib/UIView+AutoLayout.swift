@@ -11,19 +11,19 @@ import UIKit
 public extension UIView {
     
     public func checkTranslatesAutoresizing(withView: UIView?, toView: UIView?) {
-        if self.translatesAutoresizingMaskIntoConstraints() == true {
-            self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        if self.translatesAutoresizingMaskIntoConstraints == true {
+            self.translatesAutoresizingMaskIntoConstraints = false
         }
         
         if let withView = withView {
-            if withView.translatesAutoresizingMaskIntoConstraints() == true {
-                withView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            if withView.translatesAutoresizingMaskIntoConstraints == true {
+                withView.translatesAutoresizingMaskIntoConstraints = false
             }
         }
         
         if let toView = toView {
-            if toView.translatesAutoresizingMaskIntoConstraints() == true {
-                toView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            if toView.translatesAutoresizingMaskIntoConstraints == true {
+                toView.translatesAutoresizingMaskIntoConstraints = false
             }
         }
     }
@@ -93,7 +93,7 @@ public extension UIView {
     }
     
     public func arn_addConstraint(addView: UIView, relation: NSLayoutRelation, withItem:UIView, withAttribute:NSLayoutAttribute, toItem:UIView?, toAttribute:NSLayoutAttribute, constant:CGFloat) -> NSLayoutConstraint {
-        var constraint = NSLayoutConstraint(
+        let constraint = NSLayoutConstraint(
             item: withItem,
             attribute: withAttribute,
             relatedBy: relation,

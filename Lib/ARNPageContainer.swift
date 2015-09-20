@@ -95,7 +95,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     weak var observingScrollView : UIScrollView?
     var shouldObserveContentOffset : Bool = false
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -238,7 +238,7 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
         }
     }
     
-    public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         let oldX = CGFloat(self.selectedIndex) * self.collectionView.frame.width
         
         if oldX != self.collectionView.contentOffset.x && self.shouldObserveContentOffset {
@@ -307,7 +307,7 @@ public class ARNPageContainerViewCell : UICollectionViewCell {
         self.arn_allPin(self.dummyContentView)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

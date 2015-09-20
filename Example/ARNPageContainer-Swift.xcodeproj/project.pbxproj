@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56C69C461A77C8D700982ECE /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C69C451A77C8D700982ECE /* Layout.swift */; };
+		56C69C461A77C8D700982ECE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C69C451A77C8D700982ECE /* UIView+AutoLayout.swift */; };
 		7A1FA68F1A6E13CF00374C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA68E1A6E13CF00374C69 /* AppDelegate.swift */; };
 		7A1FA6911A6E13CF00374C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA6901A6E13CF00374C69 /* ViewController.swift */; };
 		7A1FA6941A6E13CF00374C69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1FA6921A6E13CF00374C69 /* Main.storyboard */; };
@@ -17,7 +17,7 @@
 		7A1FA6B01A6E145B00374C69 /* ARNPageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */; };
 		7A1FA6B21A6E153200374C69 /* ARNPageContainerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */; };
 		7A7C2E0E1A8B7BE6006D1842 /* image.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7A7C2E0D1A8B7BE6006D1842 /* image.JPG */; };
-		910836A01BA00C7700F293BB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9108369F1BA00C7700F293BB /* UIColor+Extension.swift */; };
+		910836A01BA00C7700F293BB /* UIColor+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9108369F1BA00C7700F293BB /* UIColor+RGBA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		56C69C451A77C8D700982ECE /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Layout.swift; path = ../../Lib/Layout.swift; sourceTree = "<group>"; };
+		56C69C451A77C8D700982ECE /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+AutoLayout.swift"; path = "../../Lib/UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		7A1FA6891A6E13CF00374C69 /* ARNPageContainer-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARNPageContainer-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1FA68D1A6E13CF00374C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A1FA68E1A6E13CF00374C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARNPageContainer.swift; path = ../../Lib/ARNPageContainer.swift; sourceTree = "<group>"; };
 		7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARNPageContainerTabView.swift; path = ../../Lib/ARNPageContainerTabView.swift; sourceTree = "<group>"; };
 		7A7C2E0D1A8B7BE6006D1842 /* image.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.JPG; sourceTree = "<group>"; };
-		9108369F1BA00C7700F293BB /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		9108369F1BA00C7700F293BB /* UIColor+RGBA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGBA.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +129,8 @@
 			children = (
 				7A1FA6AF1A6E145B00374C69 /* ARNPageContainer.swift */,
 				7A1FA6B11A6E153200374C69 /* ARNPageContainerTabView.swift */,
-				56C69C451A77C8D700982ECE /* Layout.swift */,
-				9108369F1BA00C7700F293BB /* UIColor+Extension.swift */,
+				56C69C451A77C8D700982ECE /* UIView+AutoLayout.swift */,
+				9108369F1BA00C7700F293BB /* UIColor+RGBA.swift */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -179,7 +179,9 @@
 		7A1FA6811A6E13CF00374C69 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Airin;
 				TargetAttributes = {
 					7A1FA6881A6E13CF00374C69 = {
@@ -239,8 +241,8 @@
 				7A1FA6911A6E13CF00374C69 /* ViewController.swift in Sources */,
 				7A1FA68F1A6E13CF00374C69 /* AppDelegate.swift in Sources */,
 				7A1FA6B01A6E145B00374C69 /* ARNPageContainer.swift in Sources */,
-				910836A01BA00C7700F293BB /* UIColor+Extension.swift in Sources */,
-				56C69C461A77C8D700982ECE /* Layout.swift in Sources */,
+				910836A01BA00C7700F293BB /* UIColor+RGBA.swift in Sources */,
+				56C69C461A77C8D700982ECE /* UIView+AutoLayout.swift in Sources */,
 				7A1FA6B21A6E153200374C69 /* ARNPageContainerTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +305,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -317,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -353,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -367,6 +370,7 @@
 				INFOPLIST_FILE = "ARNPageContainer-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Airin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -378,6 +382,7 @@
 				INFOPLIST_FILE = "ARNPageContainer-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Airin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -396,6 +401,7 @@
 				);
 				INFOPLIST_FILE = "ARNPageContainer-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Airin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARNPageContainer-Swift.app/ARNPageContainer-Swift";
 			};
@@ -411,6 +417,7 @@
 				);
 				INFOPLIST_FILE = "ARNPageContainer-SwiftTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Airin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARNPageContainer-Swift.app/ARNPageContainer-Swift";
 			};

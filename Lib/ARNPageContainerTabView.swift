@@ -27,7 +27,7 @@ public class ARNPageContainerTabView: UIView {
     public var font : UIFont = UIFont.boldSystemFontOfSize(17.0) {
         didSet {
             for index in 0..<self.buttons.count {
-                var button = self.buttons[index]
+                let button = self.buttons[index]
                 if let _titleLabel = button.titleLabel {
                     _titleLabel.font = self.font
                 }
@@ -47,7 +47,8 @@ public class ARNPageContainerTabView: UIView {
     public var itemTitles : [String] {
         get {
             var titles : [String] = []
-            for button in self.scrollView.subviews {
+            for subview in self.scrollView.subviews {
+                let button = subview as! UIButton
                 if let _title = button.titleForState(.Normal) {
                     titles.append(_title)
                 }
@@ -59,7 +60,7 @@ public class ARNPageContainerTabView: UIView {
             
             for index in 0..<newValue.count {
                 let title = newValue[index]
-                var button = self.itemButton()
+                let button = self.itemButton()
                 button.setTitle(title, forState: .Normal)
                 button.tag = index
                 self.buttons.append(button)
@@ -88,7 +89,7 @@ public class ARNPageContainerTabView: UIView {
 
     public lazy var scrollView : UIScrollView = {
         var scrollView = UIScrollView(frame: self.bounds)
-        scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         scrollView.scrollEnabled = false
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
@@ -96,7 +97,7 @@ public class ARNPageContainerTabView: UIView {
     
     lazy var backGroundImageiew : UIImageView = {
         var backGroundImageiew = UIImageView(frame: self.bounds)
-        backGroundImageiew.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        backGroundImageiew.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         return backGroundImageiew
     }()
     
@@ -108,7 +109,7 @@ public class ARNPageContainerTabView: UIView {
         self.addSubview(self.scrollView)
     }
 
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -120,7 +121,7 @@ public class ARNPageContainerTabView: UIView {
     }
     
     func itemButton() -> UIButton {
-        var button = UIButton(frame: CGRectMake(0.0, 0.0, self.minItemWidth, self.frame.height))
+        let button = UIButton(frame: CGRectMake(0.0, 0.0, self.minItemWidth, self.frame.height))
         button.titleLabel?.font = self.font
         button.setTitleColor(self.titleColor, forState: .Normal)
         button.addTarget(self, action: Selector("buttonTapped:"), forControlEvents: .TouchUpInside)
@@ -131,7 +132,7 @@ public class ARNPageContainerTabView: UIView {
     
     func resetButtonTitleColor() {
         for index in 0..<self.buttons.count {
-            var button = self.buttons[index]
+            let button = self.buttons[index]
             button.setTitleColor(self.titleColor, forState: .Normal)
             button.setTitleColor(self.highlightedTitleColor, forState: .Highlighted)
             button.setTitleColor(self.highlightedTitleColor, forState: .Selected)
@@ -172,9 +173,9 @@ public class ARNPageContainerTabView: UIView {
         var x = self.itemMargin
         
         for index in 0..<self.buttons.count {
-            var button = self.buttons[index]
-            let fontAttr = NSDictionary(object: button.titleLabel!.font, forKey: NSFontAttributeName)
-            var width = NSString(string: button.titleLabel!.text!).sizeWithAttributes(fontAttr as [NSObject : AnyObject]).width
+            let button = self.buttons[index]
+            let fontAttr = [NSFontAttributeName : button.titleLabel!.font]
+            var width = NSString(string: button.titleLabel!.text!).sizeWithAttributes(fontAttr).width
             if width < self.minItemWidth {
                 width = self.minItemWidth
             }
@@ -220,8 +221,8 @@ public class ARNPageContainerTabView: UIView {
                 alpha: normal.alpha * (1.0 - absRatio) + highlighted.alpha * absRatio
             )
             
-            var previosSelectedButton = self.buttons[selectedIndex]
-            var nextSelectedButton = self.buttons[targetIndex]
+            let previosSelectedButton = self.buttons[selectedIndex]
+            let nextSelectedButton = self.buttons[targetIndex]
             previosSelectedButton.setTitleColor(prevColor, forState: .Normal)
             nextSelectedButton.setTitleColor(nextColor, forState: .Normal)
             

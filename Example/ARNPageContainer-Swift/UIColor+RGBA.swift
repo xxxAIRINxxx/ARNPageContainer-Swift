@@ -17,33 +17,18 @@ public struct RGBA {
 
 public extension UIColor {
     
-    public func imageWithColor() -> UIImage {
-        let rect = CGRectMake(0, 0, 1, 1)
-        
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, self.CGColor)
-        CGContextFillRect(context, rect)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
     public func getRGBAStruct() -> RGBA {
         let components = CGColorGetComponents(self.CGColor)
         let colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor))
         
-        if colorSpaceModel.value == kCGColorSpaceModelRGB.value && CGColorGetNumberOfComponents(self.CGColor) == 4 {
+        if colorSpaceModel.rawValue == CGColorSpaceModel.RGB.rawValue && CGColorGetNumberOfComponents(self.CGColor) == 4 {
             return RGBA(
                 red: components[0],
                 green: components[1],
                 blue: components[2],
                 alpha: components[3]
             )
-        } else if colorSpaceModel.value == kCGColorSpaceModelMonochrome.value && CGColorGetNumberOfComponents(self.CGColor) == 2 {
+        } else if colorSpaceModel.rawValue == CGColorSpaceModel.Monochrome.rawValue && CGColorGetNumberOfComponents(self.CGColor) == 2 {
             return RGBA(
                 red: components[0],
                 green: components[0],
