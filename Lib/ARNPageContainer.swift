@@ -168,37 +168,31 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     }
     
     public func setSelectedIndex(selectedIndex: Int, animated: Bool) {
-        if selectedIndex >= self.viewControllers.count {
-            return
-        }
+        if selectedIndex >= self.viewControllers.count { return }
         
-        weak var weakSelf = self
-        self.collectionView.performBatchUpdates({ () -> Void in
-            if let _self = weakSelf {
-                _self.collectionView.reloadData()
-            }
-            }, completion: { (finished) -> Void in
-            if let _self = weakSelf {
-                _self.collectionView.scrollToItemAtIndexPath(
+        self.collectionView.performBatchUpdates({ [weak self] in
+            if self == nil { return }
+            
+            self!.collectionView.reloadData()
+            }, completion: { finished in
+                self.collectionView.scrollToItemAtIndexPath(
                     NSIndexPath(forItem: selectedIndex, inSection: 0),
                     atScrollPosition: .CenteredHorizontally,
                     animated: animated
                 )
                 
-                
-                if animated == false {
-                    _self.collectionView.userInteractionEnabled = true
-                    _self.changeOffsetHandler?(collectionView: _self.collectionView, selectedIndex: selectedIndex)
+                if !animated {
+                    self.collectionView.userInteractionEnabled = true
+                    self.changeOffsetHandler?(collectionView: self.collectionView, selectedIndex: selectedIndex)
                 }
                 
-                if let _changeIndexHandler = _self.changeIndexHandler {
-                    let dict = _self.viewControllers[selectedIndex]
+                if let _changeIndexHandler = self.changeIndexHandler {
+                    let dict = self.viewControllers[selectedIndex]
                     let controller = dict.values.first
                     _changeIndexHandler(selectIndexController: controller!, selectedIndex: selectedIndex)
                 }
                 
-                _self.collectionView.collectionViewLayout.invalidateLayout()
-            }
+                self.collectionView.collectionViewLayout.invalidateLayout()
         })
         self.currentIndex = selectedIndex
     }
