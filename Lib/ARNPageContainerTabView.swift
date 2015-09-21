@@ -10,25 +10,20 @@ import UIKit
 
 public class ARNPageContainerTabView: UIView {
     
-    public var selectTitleHandler : ((selectedIndex: Int) ->())?
+    public var selectTitleHandler : ((selectedIndex: Int) -> Void)?
     
     public var titleColor : UIColor = UIColor.lightGrayColor() {
-        didSet {
-            self.resetButtonTitleColor()
-        }
+        didSet { self.resetButtonTitleColor() }
     }
     
     public var highlightedTitleColor : UIColor = UIColor.whiteColor() {
-        didSet {
-            self.resetButtonTitleColor()
-        }
+        didSet { self.resetButtonTitleColor() }
     }
     
     public var font : UIFont = UIFont.boldSystemFontOfSize(17.0) {
         didSet {
-            for index in 0..<self.buttons.count {
-                let button = self.buttons[index]
-                if let _titleLabel = button.titleLabel {
+            self.buttons.forEach() {
+                if let _titleLabel = $0.titleLabel {
                     _titleLabel.font = self.font
                 }
             }
@@ -47,9 +42,8 @@ public class ARNPageContainerTabView: UIView {
     public var itemTitles : [String] {
         get {
             var titles : [String] = []
-            for subview in self.scrollView.subviews {
-                let button = subview as! UIButton
-                if let _title = button.titleForState(.Normal) {
+            self.buttons.forEach() {
+                if let _title = $0.titleForState(.Normal) {
                     titles.append(_title)
                 }
             }
@@ -60,31 +54,26 @@ public class ARNPageContainerTabView: UIView {
             
             for index in 0..<newValue.count {
                 let title = newValue[index]
-                let button = self.itemButton()
+                let button = self.createItemButton()
                 button.setTitle(title, forState: .Normal)
                 button.tag = index
                 self.buttons.append(button)
+                self.scrollView.addSubview(button)
             }
             self.layoutItemViews()
         }
     }
     
     public var selectedIndex : Int = 0 {
-        didSet {
-            self.layoutItemViews()
-        }
+        didSet { self.layoutItemViews() }
     }
     
     public var itemMargin : CGFloat = 30.0 {
-        didSet {
-           self.layoutItemViews()
-        }
+        didSet { self.layoutItemViews() }
     }
     
     public var minItemWidth : CGFloat = 100.0 {
-        didSet {
-            self.layoutItemViews()
-        }
+        didSet { self.layoutItemViews() }
     }
 
     public lazy var scrollView : UIScrollView = {
@@ -120,22 +109,20 @@ public class ARNPageContainerTabView: UIView {
         self.buttons.removeAll(keepCapacity: false)
     }
     
-    func itemButton() -> UIButton {
+    func createItemButton() -> UIButton {
         let button = UIButton(frame: CGRectMake(0.0, 0.0, self.minItemWidth, self.frame.height))
         button.titleLabel?.font = self.font
         button.setTitleColor(self.titleColor, forState: .Normal)
         button.addTarget(self, action: Selector("buttonTapped:"), forControlEvents: .TouchUpInside)
-        self.scrollView.addSubview(button)
         
         return button
     }
     
     func resetButtonTitleColor() {
-        for index in 0..<self.buttons.count {
-            let button = self.buttons[index]
-            button.setTitleColor(self.titleColor, forState: .Normal)
-            button.setTitleColor(self.highlightedTitleColor, forState: .Highlighted)
-            button.setTitleColor(self.highlightedTitleColor, forState: .Selected)
+        self.buttons.forEach() { [unowned self] in
+            $0.setTitleColor(self.titleColor, forState: .Normal)
+            $0.setTitleColor(self.highlightedTitleColor, forState: .Highlighted)
+            $0.setTitleColor(self.highlightedTitleColor, forState: .Selected)
         }
     }
     
@@ -172,14 +159,13 @@ public class ARNPageContainerTabView: UIView {
     func layoutItemViews() {
         var x = self.itemMargin
         
-        for index in 0..<self.buttons.count {
-            let button = self.buttons[index]
-            let fontAttr = [NSFontAttributeName : button.titleLabel!.font]
-            var width = NSString(string: button.titleLabel!.text!).sizeWithAttributes(fontAttr).width
+        self.buttons.forEach() { [unowned self] in
+            let fontAttr = [NSFontAttributeName : $0.titleLabel!.font]
+            var width = NSString(string: $0.titleLabel!.text!).sizeWithAttributes(fontAttr).width
             if width < self.minItemWidth {
                 width = self.minItemWidth
             }
-            button.frame = CGRectMake(x, 0.0, width, self.frame.size.height)
+            $0.frame = CGRectMake(x, 0.0, width, self.frame.size.height)
             x += width + self.itemMargin
         }
         

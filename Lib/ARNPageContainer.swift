@@ -12,9 +12,9 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
     
     public let topBarLayerViewDefaultHeight : CGFloat = 44.0
     
-    public var changeOffsetHandler : ((collectionView: UICollectionView, selectedIndex: Int) ->())?
-    public var changeIndexHandler : ((selectIndexController: UIViewController, selectedIndex: Int) ->())?
-    public var updateHeaderTitleHandler : ((headerTitles: [String]?) ->())?
+    public var changeOffsetHandler : ((collectionView: UICollectionView, selectedIndex: Int) -> Void)?
+    public var changeIndexHandler : ((selectIndexController: UIViewController, selectedIndex: Int) -> Void)?
+    public var updateHeaderTitleHandler : ((headerTitles: [String]?) -> Void)?
     
     var currentIndex : Int = 0
     public var selectedIndex : Int {
@@ -31,9 +31,8 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
             return self.barLayerViewHeightConstraint?.constant ?? 0
         }
         set {
-            if self.barLayerViewHeightConstraint != nil {
-                self.barLayerViewHeightConstraint!.constant = newValue
-            }
+            self.barLayerViewHeightConstraint?.constant = newValue
+            self.view.setNeedsLayout()
         }
     }
     
@@ -42,9 +41,8 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
             return self.topConstraint?.constant ?? 0.0
         }
         set {
-            if self.topConstraint != nil {
-                self.topConstraint!.constant = newValue
-            }
+            self.topConstraint?.constant = newValue
+            self.view.setNeedsLayout()
         }
     }
     
@@ -53,9 +51,8 @@ public class ARNPageContainer: UIViewController, UICollectionViewDataSource, UIC
             return self.bottomConstraint?.constant ?? 0.0
         }
         set {
-            if self.bottomConstraint != nil {
-                self.bottomConstraint!.constant = -newValue
-            }
+            self.bottomConstraint?.constant = -newValue
+            self.view.setNeedsLayout()
         }
     }
     
