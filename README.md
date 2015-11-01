@@ -1,10 +1,8 @@
 # ARNPageContainer-Swift
 
-[![CI Status](http://img.shields.io/travis/xxxAIRINxxx/ARNPageContainer-Swift.svg?style=flat)](https://travis-ci.org/xxxAIRINxxx/ARNPageContainer-Swift)
-[![Language: Swift](https://img.shields.io/badge/lang-Swift-yellow.svg?style=flat)](https://developer.apple.com/swift/)
-[![Version](https://img.shields.io/cocoapods/v/ARNPageContainer-Swift.svg?style=flat)](http://cocoadocs.org/docsets/ARNPageContainer-Swift)
-[![License](https://img.shields.io/cocoapods/l/ARNPageContainer-Swift.svg?style=flat)](http://cocoadocs.org/docsets/ARNPageContainer-Swift)
-[![Platform](https://img.shields.io/cocoapods/p/ARNPageContainer-Swift.svg?style=flat)](http://cocoadocs.org/docsets/ARNPageContainer-Swift)
+[![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
+[![Xcode 7.1+](https://img.shields.io/badge/Xcode-7.1+-blue.svg?style=flat)](https://developer.apple.com/swift/)
 
 ![capture](capture.gif "capture")
 
@@ -12,12 +10,11 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-
 ## Requirements
 
-* Xcode 7.0
+* Xcode 7.1+
 * iOS 8.0+
-* Swift 2.0
+* Swift 2.1
 * CcoaPods 0.36.0+ (if use CcoaPods)
 
 
